@@ -30,3 +30,5 @@ for col in categorical_columns:
 # İlk 5 satırı görüntüleme (örnek veri)
 print("\nVeri setinin ilk 5 satırı:")
 print(df.head())
+
+Bak şimdi burayı hallettim mi olacak

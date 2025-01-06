@@ -10,7 +10,7 @@ df = pd.read_csv(data_path)
 print(f"Veri seti boyutları: {df.shape}\n")
 
 # Sütun isimlerini ve türlerini görüntüleme
-print("Sütunlar ve türleri:")
+print("Sütunlar ve türleri:"
 print(df.dtypes, "\n")
 
 # Eksik veri analizi
@@ -30,10 +30,5 @@ for col in categorical_columns:
 # İlk 5 satırı görüntüleme (örnek veri)
 print("\nVeri setinin ilk 5 satırı:")
 print(df.head())
-# Gerekli kütüphaneleri yükleme
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 velihan özge sdlcöasdlşcöasdşlc

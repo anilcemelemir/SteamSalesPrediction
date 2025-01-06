@@ -1,6 +1,5 @@
 # Gerekli kütüphaneleri yükleme
 import pandas as pd
-import numpy as np
 
 # Veri setini yükleme
 data_path = r"C:\Users\anil_\Documents\GitHub\SteamSalesPrediction\data\games.csv"

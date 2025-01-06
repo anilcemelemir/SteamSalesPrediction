@@ -149,3 +149,7 @@ plt.figure(figsize=(10, 6))
 sns.barplot(x='Importance', y='Feature', data=importance_df)
 plt.title('Feature Importance')
 plt.show()
+
+
+
+velihan özhge sdcasdcascasd

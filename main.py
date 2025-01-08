@@ -30,5 +30,3 @@ for col in categorical_columns:
 print("\nVeri setinin ilk 5 satırı:")
 print(df.head())
 
-
-velihan özge sdlcöasdlşcöasdşlc

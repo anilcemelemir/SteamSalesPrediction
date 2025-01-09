@@ -1,32 +1,51 @@
-# Gerekli kütüphaneleri yükleme
-import pandas as pd
+import sys
+import os
 
-# Veri setini yükleme
-data_path = r"C:\Users\anil_\Documents\GitHub\SteamSalesPrediction\data\games.csv"
-df = pd.read_csv(data_path)
+# Modül yolunu ekle
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'models')))
 
-# Veri setinin boyutlarını kontrol etme
-print(f"Veri seti boyutları: {df.shape}\n")
+from src.preprocess import preprocess_data
+from models import train_model, predict_sales_pre_release
+from src.visualization import (
+    plot_actual_vs_predicted,
+    plot_feature_importances,
+    plot_residuals,
+    plot_actual_vs_predicted_comparison,
+    plot_genre_vs_ownership
+)
 
-# Sütun isimlerini ve türlerini görüntüleme
-print("Sütunlar ve türleri:")
-print(df.dtypes, "\n")
+# Veri işleme
+file_path = "data/steam.csv"
+X, y, data = preprocess_data(file_path)
 
-# Eksik veri analizi
-print("Eksik veri analizi:")
-print(df.isnull().sum(), "\n")
+# Model eğitimi
+model, X_test, y_test, y_pred = train_model(X, y)
 
-# Sütun bazında özet istatistikler (sayısal sütunlar)
-print("Sayısal sütunların özet istatistikleri:")
-print(df.describe(), "\n")
+# Grafiksel analizler
+plot_actual_vs_predicted(y_test, y_pred)
+plot_feature_importances(model, X.columns)
+plot_residuals(y_test, y_pred)
+plot_actual_vs_predicted_comparison(y_test, y_pred)
+plot_genre_vs_ownership(data)
 
-# Kategorik sütunlar için benzersiz değerler
-print("Kategorik sütunların benzersiz değerleri:")
-categorical_columns = df.select_dtypes(include=['object']).columns
-for col in categorical_columns:
-    print(f"{col}: {df[col].nunique()} benzersiz değer")
-
-# İlk 5 satırı görüntüleme (örnek veri)
-print("\nVeri setinin ilk 5 satırı:")
-print(df.head())
-
+# Örnek tahmin
+prediction = predict_sales_pre_release(
+    price=29.99,
+    average_playtime=500,
+    achievements=10,
+    tags=["Action"],
+    categories=["Single-player"],
+    genres=["Adventure"],
+    developers=["Valve"],
+    publishers=["Electronic Arts"],
+    platforms="Windows",
+    positive_ratings_range=[100, 500],
+    negative_ratings_range=[20, 50],
+    english=1,
+    required_age=18,
+    release_month=11,
+    X=X,
+    model=model
+)
+print("Tahmin edilen satış:", prediction)

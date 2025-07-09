@@ -1,0 +1,28 @@
+data/games_cleaned.csv
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Data and models
+*.csv
+*.xlsx
+*.sav
+*.pkl
+*.joblib
+data/
+models/
+
+# Logs
+*.log
+
+# Virtual environments
+venv/
+.venv/
+
+# IDE & OS
+.vscode/
+.DS_Store
+Thumbs.db
